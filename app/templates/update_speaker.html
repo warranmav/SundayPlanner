@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Speaker</title>
+    <title>Update Speaker</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
-        <h2>Add Speaker</h2>
+        <h2>Update Speaker</h2>
         <form method="POST">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="name" name="name" value="{{ speaker.name }}" required>
             </div>
             <div class="form-group">
                 <label for="topic">Topic</label>
-                <input type="text" class="form-control" id="topic" name="topic" required>
+                <input type="text" class="form-control" id="topic" name="topic" value="{{ speaker.topic }}" required>
             </div>
-            <button type="submit" class="btn btn-primary">Add Speaker</button>
+            <button type="submit" class="btn btn-primary">Update Speaker</button>
         </form>
     </div>
 </body>

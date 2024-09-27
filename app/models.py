@@ -15,6 +15,12 @@ class Speaker(db.Model):
     topic = db.Column(db.String(200), nullable=False)
     # Add other fields as needed
 
+class Assignment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    speaker_id = db.Column(db.Integer, db.ForeignKey('speaker.id'), nullable=False)
+    date = db.Column(db.Date, nullable=False)
+    speaker = db.relationship('Speaker', backref=db.backref('assignments', lazy=True))
+
 class Prayer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(50), nullable=False)  # e.g., 'Opening', 'Closing'

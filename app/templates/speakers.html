@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunday Planner</title>
+    <title>Speakers - Sunday Planner</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
 </head>
@@ -15,10 +15,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="{{ url_for('main.speakers') }}">Speakers</a>
                 </li>
                 <li class="nav-item">
@@ -44,13 +44,32 @@
     </nav>
 
     <div class="container mt-5">
-        <div class="jumbotron text-center">
-            <h1 class="display-4">Welcome to Sunday Planner</h1>
-            <p class="lead">Manage your church service efficiently and effectively.</p>
-            <hr class="my-4">
-            <p>Organize speakers, prayers, announcements, and hymns all in one place.</p>
-            <a class="btn btn-primary btn-lg" href="{{ url_for('main.speakers') }}" role="button">Get Started</a>
-        </div>
+        <h1 class="display-4">Speakers</h1>
+        <p class="lead">Here you can add, update, or delete speakers for the Sunday service.</p>
+        <a class="btn btn-primary mb-3" href="{{ url_for('main.add_speaker') }}">Add Speaker</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Topic</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for speaker in speakers %}
+                <tr>
+                    <td>{{ speaker.name }}</td>
+                    <td>{{ speaker.topic }}</td>
+                    <td>
+                        <a class="btn btn-secondary btn-sm" href="{{ url_for('main.update_speaker', id=speaker.id) }}">Edit</a>
+                        <form action="{{ url_for('main.delete_speaker', id=speaker.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 
     <footer class="footer bg-light text-center py-3">
