@@ -2,11 +2,9 @@ from flask import Flask
 from flask_login import LoginManager
 from .models import db, User
 
-def create_app():
+def create_app(config_class='config.Config'):
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'your_secret_key'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sundayplanner.db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config.from_object(config_class)
 
     db.init_app(app)
 
