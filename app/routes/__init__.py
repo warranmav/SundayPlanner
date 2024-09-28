@@ -2,4 +2,4 @@ from flask import Blueprint
 
 main = Blueprint('main', __name__)
 
-from . import index, add_speaker, update_speaker, delete_speaker, speakers
+from . import index, add_speaker, update_speaker, delete_speaker, speakers, assign_speaker

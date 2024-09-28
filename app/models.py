@@ -19,7 +19,10 @@ class Assignment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     speaker_id = db.Column(db.Integer, db.ForeignKey('speaker.id'), nullable=False)
     date = db.Column(db.Date, nullable=False)
+    duration = db.Column(db.Enum('3 Min', '5 Min', '10 Min', '15 Min', '20 Min'), nullable=False)
+    order = db.Column(db.Integer, nullable=False)
     speaker = db.relationship('Speaker', backref=db.backref('assignments', lazy=True))
+
 
 class Prayer(db.Model):
     id = db.Column(db.Integer, primary_key=True)

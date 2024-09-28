@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunday Planner</title>
+    <title>Assignments</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -15,13 +14,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('main.speakers') }}">Speakers</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="{{ url_for('main.assignments') }}">Assignments</a>
                 </li>
                 <li class="nav-item">
@@ -47,23 +46,35 @@
     </nav>
 
     <div class="container mt-5">
-        <div class="jumbotron text-center">
-            <h1 class="display-4">Welcome to Sunday Planner</h1>
-            <p class="lead">Manage your church service efficiently and effectively.</p>
-            <hr class="my-4">
-            <p>Organize speakers, prayers, announcements, and hymns all in one place.</p>
-            <a class="btn btn-primary btn-lg" href="{{ url_for('main.speakers') }}" role="button">Get Started</a>
-        </div>
-    </div>
-
-    <footer class="footer bg-light text-center py-3">
-        <div class="container">
-            <span class="text-muted">© 2024 Sunday Planner. All rights reserved.</span>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+        <h2>Assignments</h2>
+        <a class="btn btn-primary mb-3" href="{{ url_for('main.assign_speaker') }}">Assign Speaker</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Speaker</th>
+                    <th>Date</th>
+                    <th>Duration</th>
+                    <th>Order</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for assignment in assignments %}
+                <tr>
+                    <td>{{ assignment.speaker.name }}</td>
+                    <td>{{ assignment.date }}</td>
+                    <td>{{ assignment.duration }}</td>
+                    <td>
+                        {% if assignment.order == 1 %}
+                            1st Speaker
+                        {% elif assignment.order == 2 %}
+                            2nd Speaker
+                        {% elif assignment.order == 3 %}
+                            3rd Speaker
+                        {% elif assignment.order == 4 %}
+                            Final Speaker
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table
