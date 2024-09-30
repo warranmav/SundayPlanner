@@ -54,7 +54,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Topic</th>
+                    <th>Exceptions</th> <!-- New Exceptions Column -->
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -62,9 +62,15 @@
                 {% for speaker in speakers %}
                 <tr>
                     <td>{{ speaker.name }}</td>
-                    <td>{{ speaker.topic }}</td>
                     <td>
-                        <a class="btn btn-secondary btn-sm" href="{{ url_for('main.update_speaker', id=speaker.id) }}">Edit</a>
+                        {% if speaker.id in speaker_exceptions %}
+                            {{ speaker_exceptions[speaker.id] }}
+                        {% else %}
+                            No Exceptions
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary btn-sm" href="{{ url_for('main.update_speaker', speaker_id=speaker.id) }}">Edit</a>
                         <form action="{{ url_for('main.delete_speaker', id=speaker.id) }}" method="POST" style="display:inline;">
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>

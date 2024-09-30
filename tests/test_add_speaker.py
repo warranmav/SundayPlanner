@@ -20,12 +20,12 @@ class AddSpeakerTestCase(unittest.TestCase):
     def test_add_speaker(self):
         response = self.client.post('/add_speaker', data={
             'name': 'John Doe',
-            'topic': 'Faith'
+            #'topic': 'Faith'
         })
         self.assertEqual(response.status_code, 302)  # Redirect after adding
         speaker = Speaker.query.filter_by(name='John Doe').first()
         self.assertIsNotNone(speaker)
-        self.assertEqual(speaker.topic, 'Faith')
+        #self.assertEqual(speaker.topic, 'Faith')
 
 if __name__ == '__main__':
     unittest.main()

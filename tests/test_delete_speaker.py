@@ -11,7 +11,7 @@ class DeleteSpeakerTestCase(unittest.TestCase):
         self.app_context.push()
         db.create_all()
         create_test_user(self.client)
-        self.speaker = Speaker(name='John Doe', topic='Faith')
+        self.speaker = Speaker(name='John Doe')
         db.session.add(self.speaker)
         db.session.commit()
 

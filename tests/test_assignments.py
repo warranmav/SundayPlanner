@@ -23,7 +23,7 @@ class AssignmentsPageTestCase(TestCase):
             email='test@example.com',
             password='password'
         ))
-        speaker = Speaker(name='John Doe', topic='Faith')
+        speaker = Speaker(name='John Doe')
         db.session.add(speaker)
         db.session.commit()
         assignment = Assignment(speaker_id=1, date=date(2024, 10, 6), duration='10 Min', order=1)

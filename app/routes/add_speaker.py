@@ -8,8 +8,7 @@ from ..models import db, Speaker
 def add_speaker():
     if request.method == 'POST':
         name = request.form['name']
-        topic = request.form['topic']
-        new_speaker = Speaker(name=name, topic=topic)
+        new_speaker = Speaker(name=name)
         db.session.add(new_speaker)
         db.session.commit()
         flash('Speaker added successfully!')

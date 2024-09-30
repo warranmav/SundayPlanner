@@ -11,7 +11,7 @@ class SpeakersTestCase(unittest.TestCase):
         self.app_context.push()
         db.create_all()
         create_test_user(self.client)
-        self.speaker = Speaker(name='John Doe', topic='Faith')
+        self.speaker = Speaker(name='John Doe')
         db.session.add(self.speaker)
         db.session.commit()
 
@@ -24,7 +24,7 @@ class SpeakersTestCase(unittest.TestCase):
         response = self.client.get('/speakers')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'John Doe', response.data)
-        self.assertIn(b'Faith', response.data)
+        #self.assertIn(b'Faith', response.data)
 
 if __name__ == '__main__':
     unittest.main()

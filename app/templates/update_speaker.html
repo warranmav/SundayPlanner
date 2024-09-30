@@ -10,13 +10,18 @@
     <div class="container mt-5">
         <h2>Update Speaker</h2>
         <form method="POST">
+            {{ form.hidden_tag() }}  <!-- Include the CSRF token -->
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ speaker.name }}" required>
+                {{ form.name(class='form-control', id='name') }} <!-- Using Flask-WTF form field -->
             </div>
             <div class="form-group">
-                <label for="topic">Topic</label>
-                <input type="text" class="form-control" id="topic" name="topic" value="{{ speaker.topic }}" required>
+                <label for="exception_reason">Exception Reason</label>
+                {{ form.exception_reason(class='form-control', id='exception_reason') }}
+            </div>
+            <div class="form-group">
+                <label for="expiry_date">Vacation Expiry Date</label>
+                {{ form.expiry_date(class='form-control', id='expiry_date') }}
             </div>
             <button type="submit" class="btn btn-primary">Update Speaker</button>
         </form>

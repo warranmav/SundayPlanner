@@ -23,7 +23,7 @@ class AssignSpeakerTestCase(TestCase):
             email='test@example.com',
             password='password'
         ))
-        speaker = Speaker(name='John Doe', topic='Faith')
+        speaker = Speaker(name='John Doe')
         db.session.add(speaker)
         db.session.commit()
 

@@ -11,7 +11,7 @@ class UpdateSpeakerTestCase(unittest.TestCase):
         self.app_context.push()
         db.create_all()
         create_test_user(self.client)
-        self.speaker = Speaker(name='John Doe', topic='Faith')
+        self.speaker = Speaker(name='John Doe')
         db.session.add(self.speaker)
         db.session.commit()
 
@@ -28,7 +28,7 @@ class UpdateSpeakerTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 302)  # Redirect after updating
         speaker = Speaker.query.get(self.speaker.id)
         self.assertEqual(speaker.name, 'John Smith')
-        self.assertEqual(speaker.topic, 'Hope')
+
 
 if __name__ == '__main__':
     unittest.main()
